@@ -46,15 +46,12 @@ Pastikan Anda telah menginstal:
 - Koneksi internet untuk memuat sumber daya eksternal (Alpine.js, Feather Icons, Google Fonts)
 
 ### Instalasi
-
 1. **Clone repositori:**
    ```bash
-git clone https://github.com/JOJO-exm/ZO-coffee-web-template.git
-   ```
-2. **Masuk ke direktori proyek:**
+   git clone https://github.com/JOJO-exm/ZO-coffee-web-template.git
    ```bash
-cd ZO-coffee-web-template
-   ```
+   cd ZO-coffee-web-template
+   
 3. **Buka file `index.html` di browser pilihan Anda:**
    - Anda bisa langsung mengklik dua kali pada file `index.html` atau klik kanan dan pilih "Open with" > "Browser Anda".
 
