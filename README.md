@@ -49,7 +49,7 @@ Pastikan Anda telah menginstal:
 
 1. **Clone repositori:**
    ```bash
-   git clone https://github.com/namapenggunagithub/ZO-coffee-web-template.git
+   git clone https://github.com/JOJO-exm/ZO-coffee-web-template.git
    ```
 2. **Masuk ke direktori proyek:**
    ```bash
