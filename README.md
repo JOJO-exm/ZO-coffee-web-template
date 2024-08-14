@@ -53,7 +53,7 @@ Pastikan Anda telah menginstal:
    ```
 2. **Masuk ke direktori proyek:**
    ```bash
-   cd ZO-coffee-web-template.
+   cd ZO-coffee-web-template
    ```
 3. **Buka file `index.html` di browser pilihan Anda:**
    - Anda bisa langsung mengklik dua kali pada file `index.html` atau klik kanan dan pilih "Open with" > "Browser Anda".
