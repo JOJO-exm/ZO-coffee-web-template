@@ -47,9 +47,8 @@ Pastikan Anda telah menginstal:
 
 ### Instalasi
 1. **Clone repositori:**
-   ```bash
-   git clone https://github.com/JOJO-exm/ZO-coffee-web-template.git
-   ```bash
+git clone https://github.com/JOJOexm/ZO-coffee-web-template.git
+2. **Masuk ke Directori:**
    cd ZO-coffee-web-template
    
 3. **Buka file `index.html` di browser pilihan Anda:**
