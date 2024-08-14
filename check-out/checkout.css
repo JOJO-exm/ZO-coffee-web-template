@@ -1,0 +1,360 @@
+/* Definisikan variabel warna */
+:root {
+	--background-color: #1a1124; /* Tema hitam AMOLED */
+	--text-color: #fff; /* Teks putih untuk kontras */
+	--form-background: #111; /* Latar belakang gelap form */
+	--border-color: rgba(172, 109, 255, 0.3); /* Warna ungu halus untuk border */
+	--hover-box-shadow: rgba(0, 0, 0, 0.9); /* Efek shadow saat hover */
+	--default-box-shadow: rgba(0, 0, 0, 0.8); /* Shadow default */
+	--heading-color: #ac6dff; /* Warna heading */
+	--product-background: #222; /* Latar belakang detail produk */
+	--input-background: #222; /* Latar belakang input */
+	--notification-success: #4caf50; /* Warna notifikasi sukses */
+	--notification-error: #f44336; /* Warna notifikasi error */
+	--button-background: #ac6dff; /* Warna tombol checkout */
+	--button-hover-background: #9a5efc; /* Warna tombol hover */
+	--border-color-input: #ac6dff; /* Warna border input saat hover */
+}
+
+/* Reset dasar dan styling umum */
+/* Reset dasar dan styling umum */
+body {
+	font-family: "Nunito", sans-serif;
+	background-color: var(--background-color);
+	color: var(--text-color);
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	box-sizing: border-box;
+	overflow: hidden; /* Menghindari scroll horizontal dan vertikal */
+}
+
+/* Container utama */
+.payment-form {
+	width: 100%;
+	max-width: 95%; /* Lebar maksimum agar muat di layar */
+	margin: 0 0.7rem 0;
+	margin-top: -4rem;
+	background: linear-gradient(270deg, #3c264e, var(--form-background)); /* Warna gradient */
+	background-size: 400% 400%; /* Ukuran background yang besar untuk animasi */
+	box-shadow: 0 4px 8px var(--default-box-shadow);
+	padding: 15px; /* Padding disesuaikan */
+	border-radius: 8px;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid var(--border-color);
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+	animation:
+		gradientAnimation 5s ease infinite,
+		fadeIn 0.5s ease;
+}
+
+/* Animasi background gradient */
+@keyframes gradientAnimation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+.payment-method {
+	margin-top: -2.5rem; /* Pendekkan margin atas */
+}
+
+.payment-options {
+	display: flex;
+	flex-direction: column;
+}
+
+.payment-options label {
+	display: flex;
+	align-items: center;
+	margin-bottom: 2rem; /* Hilangkan ruang vertikal antar label */
+	font-size: 0.65rem; /* Ukuran font lebih kecil */
+	color: #fff; /* Warna teks */
+	position: relative; /* Posisi relatif untuk ikon */
+	padding: 1px 4px 10px; /* Kurangi padding vertikal dan atur horizontal untuk ikon */
+	border-radius: 4px; /* Sudut border-radius untuk tampilan lebih halus */
+	overflow: hidden; /* Pastikan konten tidak melampaui area label */
+	transition:
+		color 0.3s ease,
+		background-color 0.3s ease,
+		transform 0.3s ease; /* Transisi warna teks, latar belakang, dan transformasi */
+	cursor: pointer; /* Tanda elemen dapat diklik */
+}
+
+.payment-options input {
+	display: none; /* Sembunyikan tombol radio */
+}
+
+.payment-options i {
+	position: relative;
+	padding: 0 0.5rem 0; /* Posisi ikon lebih dekat ke kiri */
+	font-size: 0.75rem; /* Ukuran ikon lebih kecil untuk keseimbangan */
+	color: #fff; /* Warna ikon sesuai tema */
+	transition:
+		color 0.3s ease,
+		transform 0.3s ease; /* Tambahkan transisi untuk warna dan transformasi ikon */
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Efek bayangan 3D pada ikon */
+}
+
+.payment-options label::before,
+.payment-options label::after {
+	content: "";
+	position: absolute;
+	bottom: -2px;
+	height: 2px;
+	background: #ac6dff; /* Warna garis sebelum hover */
+	transition: transform 0.3s ease;
+}
+
+.payment-options label::before {
+	left: 0;
+	width: 0;
+}
+
+.payment-options label::after {
+	right: 0;
+	width: 100%;
+	transform: scaleX(0); /* Mulai dalam keadaan tidak terlihat */
+	transition: transform 0.3s ease;
+}
+
+.payment-options label:hover::before {
+	width: 100%; /* Tampilkan before saat hover */
+}
+
+.payment-options label:hover::after {
+	transform: scaleX(1); /* Tampilkan after saat hover */
+}
+
+.payment-options label:hover {
+	color: #ac6dff; /* Ubah warna teks saat hover */
+	background-color: rgba(172, 109, 255, 0.1); /* Latar belakang saat hover tanpa efek biru */
+}
+
+.payment-options label:active {
+	transform: scale(0.95); /* Efek klik dengan sedikit skala */
+	color: #d1a7ff; /* Ubah warna teks saat klik */
+}
+
+.payment-options label:hover i {
+	transform: scale(1.1); /* Efek zoom ringan pada ikon saat hover */
+	color: #ac6dff; /* Ubah warna ikon saat hover */
+}
+
+.payment-options label:active i {
+	transform: scale(0.9); /* Efek klik pada ikon */
+}
+/* Judul checkout */
+.checkout-container h1 {
+	margin-top: 0;
+	font-size: 0.9rem; /* Ukuran font lebih kecil */
+	border-bottom: 2px solid var(--heading-color);
+	padding-bottom: 6px; /* Padding disesuaikan */
+	color: var(--text-color);
+	justify-content: center;
+	display: flex;
+}
+
+/* Detail produk dan total */
+.product-details,
+.total {
+	margin-top: -0.04rem; /* Margin disesuaikan */
+}
+/* Detail produk */
+.product-detail-container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	background-color: var(--product-background);
+	padding: 0 8px 0; /* Padding disesuaikan */
+	border-radius: 8px;
+	gap: 0.5rem; /* Gap disesuaikan */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	transition: box-shadow 0.3s ease;
+}
+
+.product-image {
+	width: 4rem; /* Ukuran disesuaikan */
+	height: 5rem; /* Ukuran disesuaikan */
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.product-info {
+	flex: 1;
+}
+#cartTotal {
+	font-size: 0.75rem;
+	justify-content: center;
+	display: flex;
+	margin-left: 4rem;
+	margin-top: -0.6rem;
+	padding: 0.5rem;
+}
+.product-name {
+	font-size: 0.7rem; /* Ukuran font disesuaikan */
+	color: var(--button-background);
+}
+
+.product-description {
+	font-size: 0.55rem; /* Ukuran font disesuaikan */
+}
+
+.product-price {
+	font-size: 0.65rem; /* Ukuran font disesuaikan */
+	color: var(--button-background);
+}
+
+/* Metode pembayaran */
+.payment-method h3,
+.shipping-address h3 {
+	margin-top: -1rem;
+	font-size: 0.8rem; /* Ukuran font disesuaikan */
+	color: lightgray;
+	margin-bottom: 0.7rem;
+}
+.shipping-address h3 {
+	margin-top: -0.22rem;
+}
+.payment-options {
+	display: flex;
+	flex-direction: column;
+	margin-top: -0.5rem;
+}
+
+.payment-options label {
+	color: lightblue;
+	font-size: 0.6rem;
+	display: flex;
+	align-items: center;
+	margin-bottom: 0rem; /* Margin disesuaikan */
+}
+
+.payment-options input {
+	margin-right: 5px;
+}
+
+/* Alamat pengiriman dan form */
+.shipping-address form {
+	display: flex;
+	flex-direction: column;
+}
+
+.shipping-address label {
+	margin-bottom: 5px;
+	font-weight: bold;
+	font-size: 0.68rem;
+	margin: 0.5rem 0 0.5rem;
+	margin-right: 1rem;
+}
+
+.shipping-address input,
+.shipping-address textarea {
+	border-radius: 4px;
+	border: 1px solid #4e3c6d;
+	background-color: #00000050;
+	color: var(--text-color);
+	padding: 5px; /* Padding disesuaikan */
+	font-size: 0.8rem; /* Ukuran font disesuaikan */
+	box-shadow: 1px 2px 3px #271d37;
+	transition:
+		border-color 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.shipping-address input:focus,
+.shipping-address textarea:focus {
+	border-color: #7b68ee;
+	box-shadow: 0 0 8px rgba(123, 104, 238, 0.6);
+	outline: none;
+}
+
+/* Hover effect */
+.shipping-address input:hover,
+.shipping-address textarea:hover {
+	border-color: var(--border-color-input);
+}
+
+/* Tombol checkout */
+.checkout-button {
+	background-color: var(--button-background);
+	border: none;
+	color: var(--text-color);
+	padding: 8px;
+	border-radius: 4px;
+	font-size: 0.8rem;
+	cursor: pointer;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		box-shadow 0.3s ease,
+		transform 0.3s ease;
+	margin: 25px 25px 15px;
+	box-shadow: 1px 2px 2px 2px #654589;
+}
+
+.checkout-button:hover::before,
+.checkout-button:focus::before {
+	background-color: var(--button-background);
+	color: var(--text-color);
+	box-shadow: 0 0 7px var(--button-background);
+	transform: scale(1.05); /* Slightly enlarge for hover effect */
+}
+
+.checkout-button:active {
+	background-color: var(--text-color);
+	color: var(--button-background);
+	box-shadow: 1px 2px 5px 2px lightgray;
+	transform: scale(0.95); /* Zoom out slightly on click */
+	transition:
+		background-color 0.1s ease,
+		color 0.1s ease,
+		box-shadow 0.1s ease,
+		transform 0.1s ease;
+}
+/* Notifikasi */
+.notification-wrapper {
+	display: flex;
+	justify-content: center; /* Menyusun elemen notifikasi secara horizontal di tengah */
+	gap: 10px; /* Jarak antara notifikasi */
+	position: relative;
+	width: 100%; /* Atur lebar wrapper sesuai kebutuhan */
+}
+
+.notification {
+	padding: 2px 10px 0;
+	border-radius: 4px;
+	display: none;
+	position: absolute; /* Atur posisi relatif di dalam wrapper */
+	width: auto; /* Lebar otomatis agar sesuai dengan konten */
+	max-width: 180px;
+	text-align: center;
+	font-size: 0.55rem;
+	background-color: rgba(250, 250, 250, 0.7);
+	backdrop-filter: blur(8px);
+}
+
+.notification.success {
+	background-color: rgba(200, 255, 200, 0.2);
+	color: #c9ffe0;
+	display: block;
+	box-shadow: 0 0 5px 1px rgba(76, 175, 80, 1);
+}
+
+.notification.error {
+	background-color: rgba(255, 200, 200, 0.2);
+	color: #ffccc5;
+	display: block;
+	box-shadow: 0 0 5px 1px rgba(244, 67, 54, 1);
+}

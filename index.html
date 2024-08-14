@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Styles -->
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,600&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
+		</style>
+		<!-- Alpine.js -->
+		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		<!-- Feather Icons -->
+		<script src="https://unpkg.com/feather-icons"></script>
+		<title>COFFEE/ZO</title>
+	</head>
+	<body>
+		<!-- Navbar Start -->
+		<div class="navbar" x-data="products">
+			<a class="logo" href="#">ROTI <span>/ZO</span></a>
+			<div class="navbar-nav">
+				<a href="#home">home</a>
+				<a href="#about">about</a>
+				<a href="#menu">info menu</a>
+				<a href="#products">menu produk</a>
+				<a href="#contact">contact</a>
+			</div>
+			<div class="navbar-icon">
+				<a href="#" id="search-nav"><i data-feather="search"></i></a>
+				<a href="#" id="shopping-nav">
+					<i data-feather="shopping-cart"></i>
+					<span class="notif" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+				</a>
+				<a href="#" id="menu-nav"><i data-feather="menu"></i></a>
+				<div class="search-form">
+					<input type="text" id="search-box" placeholder="Cari..." />
+					<label for="search-box"><i data-feather="search"></i></label>
+					<div id="notification"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Navbar End -->
+
+		<!-- Shopping Cart Start -->
+		<div class="shopping-cart" x-data="products">
+			<template x-for="(item, index) in $store.cart.items" :key="index">
+				<div class="cart-item">
+					<img :src="`img/products/${item.img}`" :alt="item.name" />
+					<div class="item-detail">
+						<h3 x-text="item.name"></h3>
+						<div class="item-idr">
+							<span x-text="rupiah(item.idr)"></span> &times;
+							<button @click="$store.cart.remove(item.id)" id="minus">&minus;</button>
+							<span x-text="item.quantity"></span>
+							<button @click="$store.cart.add(item)" id="plus">&plus;</button> &equals;
+							<span x-text="rupiah(item.total)"></span>
+						</div>
+					</div>
+				</div>
+			</template>
+			<h4 x-show="!$store.cart.items.length" style="margin-top: 45rem">Cart Is Empty</h4>
+			<h4 x-show="$store.cart.items.length">Total: <span x-text="rupiah($store.cart.total)"></span></h4>
+
+			<div class="form-container" x-show="$store.cart.items.length">
+				<form id="checkout">
+					<h5>Customer Detail</h5>
+					<label for="name">
+						<span>Name</span>
+						<input type="name" name="name" id="name" />
+					</label>
+					<label for="email">
+						<span>Email</span>
+						<input type="email" name="email" id="email" />
+					</label>
+					<label for="phone">
+						<span>Phone</span>
+						<input type="number" name="phone" id="phone" />
+					</label>
+					<button class="checkout-button disabled" type="submit" id="checkout-button">checkout</button>
+				</form>
+			</div>
+		</div>
+		<!-- Shopping Cart End -->
+
+		<!-- Section Start -->
+		<section class="sect" id="home">
+			<main class="content">
+				<h1>SELAMAT DATANG DI <span>COFFEE ZO</span></h1>
+				<p>Selamat datang di Coffee Zo! Nikmati berbagai varian kopi terbaik kami dalam suasana yang hangat dan nyaman. Temukan pengalaman kopi yang memanjakan selera Anda.</p>
+				<a href="#menu" class="cta">beli disini</a>
+			</main>
+		</section>
+		<!-- Section End -->
+
+		<!-- About Section Start -->
+		<section id="about" class="about">
+			<h2><span>Tentang</span> Kami</h2>
+			<div class="row">
+				<div class="about-img">
+					<img src="img/about.jpg" alt="Tentang kami" />
+				</div>
+				<div class="content">
+					<h3>Kenapa Menu Kami Spesial?</h3>
+					<p>
+						Di Coffee Zo, kami berkomitmen untuk menyajikan kopi terbaik yang terbuat dari biji kopi pilihan dan teknik penyajian yang cermat. Setiap cangkir kopi kami diracik dengan penuh cinta dan
+						dedikasi untuk memberikan pengalaman rasa yang unik dan memuaskan.
+					</p>
+					<p>
+						Menu kami dirancang untuk memenuhi berbagai selera, mulai dari kopi klasik hingga kreasi spesial yang inovatif. Kami juga menawarkan berbagai camilan dan makanan ringan yang complement
+						dengan kopi kami, memastikan setiap kunjungan Anda menjadi momen yang menyenangkan.
+					</p>
+				</div>
+			</div>
+		</section>
+		<!-- About Section End -->
+
+		<!-- Menu Section Start -->
+		<section id="menu" class="menu" x-data="products">
+			<h2>Info Menu<span> Kami</span></h2>
+			<p>
+				Di Coffee Zo, kami menawarkan berbagai pilihan menu kopi yang diracik dengan penuh perhatian. Dari espresso yang kuat hingga cappuccino yang lembut, setiap minuman kami menggunakan biji kopi
+				pilihan yang berkualitas.
+			</p>
+			<div class="row">
+				<template x-for="item in items" :key="item.id">
+					<div class="menu-card">
+						<img :src="`img/products/${item.img}`" :alt="item.name" class="menu-img" />
+						<div class="menu-title-container">
+							<span class="menu-stars" x-text="item.star"></span>
+							<div class="menu-names">
+								<h3 x-text="rupiah(item.idr)"></h3>
+								<h3 class="menu-names-get" x-text="rupiah(item.idrget)"></h3>
+							</div>
+							<h3 class="menu-title" x-text="item.name"></h3>
+						</div>
+						<p class="menu-description" x-text="item.info"></p>
+						<p class="menu-description" x-text="item.description"></p>
+						<svg width="1.6rem" height="1.6rem" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hover-icon">
+							<use href="img/feather-sprite.svg#info"></use>
+						</svg>
+					</div>
+				</template>
+			</div>
+		</section>
+		<!-- Menu Section End -->
+
+		<!-- Product Section Start -->
+		<div class="products" id="products" x-data="products">
+			<h2><span>Menu Coffee</span> Kami</h2>
+			<p>
+				Jelajahi koleksi kopi kami yang diracik dengan penuh perhatian dan kualitas terbaik. Dari kopi hitam yang kuat hingga campuran spesial kami, setiap pilihan dirancang untuk memberikan
+				pengalaman rasa yang tak terlupakan. Temukan minuman favorit Anda dan nikmati berbagai pilihan yang kami tawarkan.
+			</p>
+			<div class="row">
+				<template x-for="(item, index) in items" :key="index">
+					<div class="product-card">
+						<div class="product-icon">
+							<a class="togg" href="#" @click.prevent="$store.cart.add(item)">
+								<svg width="1.6rem" height="1.6rem" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<use href="img/feather-sprite.svg#shopping-cart"></use>
+								</svg>
+							</a>
+							<span class="prosess"></span>
+							<span class="notification">save order</span>
+							<a href="#" class="beli-disini" @click.prevent="purchaseItem(item)">
+								<svg width="1.6rem" height="1.6rem" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<use href="img/feather-sprite.svg#dollar-sign"></use>
+								</svg>
+							</a>
+						</div>
+						<div class="product-image">
+							<img :src="`img/products/${item.img}`" :alt="item.name" />
+						</div>
+						<div class="product-content">
+							<h3 x-text="item.name"></h3>
+							<div class="product-stars">
+								<h4 class="fill" x-text="item.star"></h4>
+							</div>
+							<div class="product-idr">
+								<i x-text="rupiah(item.idr)"></i>
+								<span x-text="rupiah(item.idrget)"></span>
+							</div>
+						</div>
+					</div>
+				</template>
+			</div>
+		</div>
+		<!-- Product Section End -->
+
+		<!-- Contact Section Start -->
+		<section id="contact" class="contact">
+			<h2>Kontak<span> Kami</span></h2>
+			<p>
+				Jika Anda memiliki pertanyaan atau ingin mengetahui lebih lanjut tentang layanan kami, jangan ragu untuk menghubungi kami. Kami siap membantu Anda dengan informasi atau dukungan yang Anda
+				butuhkan. Hubungi kami melalui email, telepon, atau kunjungi langsung kedai kami untuk pengalaman yang lebih personal.
+			</p>
+			<div class="row">
+				<iframe
+					frameborder="0"
+					scrolling="no"
+					marginheight="0"
+					marginwidth="0"
+					src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=indramayu+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+					class="map">
+				</iframe>
+				<div class="container">
+					<!-- Notifikasi -->
+					<div id="notifes" class="notifes"></div>
+					<!-- Form Kontak -->
+					<form id="contactForm">
+						<div class="input-group">
+							<i data-feather="user"></i>
+							<input type="name" name="name" placeholder="Nama" required />
+						</div>
+						<div class="input-group">
+							<i data-feather="mail"></i>
+							<input type="email" name="email" placeholder="Email" required />
+						</div>
+						<div class="input-group">
+							<i data-feather="phone"></i>
+							<input type="number" name="number" placeholder="Nomor Telepon" />
+						</div>
+						<div class="input-group">
+							<i data-feather="message-circle"></i>
+							<textarea name="message" placeholder="Pesan" rows="3" required></textarea>
+						</div>
+						<button class="btn" type="button" id="submitButton">Kirim Pesan</button>
+						<p id="notif-apung"></p>
+					</form>
+
+					<!-- FAQ -->
+					<div id="faq">
+						<h3>Pertanyaan yang Sering Diajukan</h3>
+						<ul id="faqList"></ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--Contact Section End-->
+
+		<!--Footer Start-->
+		<footer>
+			<div class="socials">
+				<a href="#">
+					<i data-feather="instagram"></i>
+				</a>
+				<a href="#">
+					<i data-feather="facebook"></i>
+				</a>
+				<a href="#">
+					<i data-feather="twitter"></i>
+				</a>
+			</div>
+			<div class="links">
+				<a href="#home">home</a>
+				<a href="#about">about</a>
+				<a href="#menu">menu</a>
+				<a href="#contact">contact</a>
+			</div>
+			<div class="created">
+				<p>Created By <a href="">JOJO ex/m</a>. | #Copy: 2024.</p>
+			</div>
+		</footer>
+		<!--Footer End-->
+
+		<!--Modal Box Item Detai Startl-->
+
+		<!--Modal Box Item Detai Endl-->
+
+		<!--Feather Icon-->
+		<script>
+			feather.replace();
+		</script>
+		<!--Feather Icon End-->
+		<!--App js-->
+		<script src="src/app.js" type="text/javascript" charset="utf-8"></script>
+		<!--App js End-->
+		<!--Main javascript-->
+		<script src="js/aiResponses/aiResponses.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/form-contact.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<!--Main javascript End-->
+	</body>
+</html>
