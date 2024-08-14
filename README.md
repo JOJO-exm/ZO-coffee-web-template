@@ -49,11 +49,11 @@ Pastikan Anda telah menginstal:
 
 1. **Clone repositori:**
    ```bash
-   git clone https://github.com/namapenggunagithub/coffe-zo.git
+   git clone https://github.com/namapenggunagithub/ZO-coffee-web-template.git
    ```
 2. **Masuk ke direktori proyek:**
    ```bash
-   cd coffe-zo
+   cd ZO-coffee-web-template.
    ```
 3. **Buka file `index.html` di browser pilihan Anda:**
    - Anda bisa langsung mengklik dua kali pada file `index.html` atau klik kanan dan pilih "Open with" > "Browser Anda".
