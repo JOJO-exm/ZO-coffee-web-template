@@ -1,4 +1,3 @@
-
 # COFFEE/ZO - Proyek Website
 
 Selamat datang di proyek COFFEE/ZO! Ini adalah template website yang sepenuhnya responsif dan elegan yang dirancang untuk kedai kopi, menawarkan berbagai fitur mulai dari tampilan menu hingga keranjang belanja dengan sistem checkout.
@@ -46,12 +45,17 @@ Pastikan Anda telah menginstal:
 - Koneksi internet untuk memuat sumber daya eksternal (Alpine.js, Feather Icons, Google Fonts)
 
 ### Instalasi
+
 1. **Clone repositori:**
-git clone https://github.com/JOJOexm/ZO-coffee-web-template.git
-2. **Masuk ke Directori:**
+   ```bash
+   git clone https://github.com/JOJO-exm/ZO-coffee-web-template.git
+
+2. **Masuk ke repositori:**
+   ```bash
    cd ZO-coffee-web-template
+
    
-3. **Buka file `index.html` di browser pilihan Anda:**
+4. **Buka file `index.html` di browser pilihan Anda:**
    - Anda bisa langsung mengklik dua kali pada file `index.html` atau klik kanan dan pilih "Open with" > "Browser Anda".
 
 ## Cara Penggunaan
